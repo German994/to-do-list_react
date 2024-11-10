@@ -19,7 +19,7 @@ const ToDoItem = ({ todo, onCheckboxChange }) => {
           onChange={() => onCheckboxChange(todo.id)}
         />
         {isEditing ? (
-          <div>
+          <div className={styles.info}>
             <EditTodoForm
               todo={todo}
               todoEdited={todoEdited}
@@ -28,7 +28,7 @@ const ToDoItem = ({ todo, onCheckboxChange }) => {
             />
           </div>
         ) : (
-          <div>
+          <div className={styles.info}>
             <p>{todo.name}</p>
             <p>{todo.description}</p>
             <p>{todo.creator}</p>
