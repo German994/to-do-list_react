@@ -2,17 +2,16 @@ import { useState } from 'react'
 import { TodosProvider } from '../../components/context/TodosContext'
 import AddTodoForm from '../components/addTodoForm/AddTodoForm'
 import ToDoList from '../components/toDoList/ToDoList'
-import EditTodoForm from '../components/editTodoForm/EditTodoForm'
+import styles from './home.styles.module.css'
 
 const TodosPage = () => {
   const [todos, addTodo, deleteTodo, editTodo] = useState([])
 
   return (
-    <div>
+    <div className={styles.dashboard}>
       <TodosProvider value={{ todos, addTodo, deleteTodo, editTodo }}>
         <AddTodoForm />
         <ToDoList />
-        {/* <EditTodoForm /> */}
       </TodosProvider>
     </div>
   )

@@ -1,6 +1,6 @@
 import { useTodos } from '../../../components/context/TodosContext'
 import ToDoItem from '../toDoItem/ToDoItem'
-import styles from './styles.module.css'
+import styles from './list.styles.module.css'
 
 const ToDoList = () => {
   const { todos, editTodo } = useTodos()
@@ -18,28 +18,31 @@ const ToDoList = () => {
   }
 
   return (
-    <div>
-      <h1>Lista de Tareas</h1>
-      <h2>Tareas Completadas</h2>
-      <ul className={styles.list}>
-        {todoCompleted.map((e) => (
-          <ToDoItem
-            key={e.id}
-            todo={e}
-            onCheckboxChange={handleCheckboxChange}
-          />
-        ))}
-      </ul>
-      <h2>Tareas Pendientes</h2>
-      <ul className={styles.list}>
-        {todoNotCompleted.map((e) => (
-          <ToDoItem
-            key={e.id}
-            todo={e}
-            onCheckboxChange={handleCheckboxChange}
-          />
-        ))}
-      </ul>
+    <div className={styles.containerElements}>
+      <div className={styles.containerCompleted}>
+        <h2 className={styles.title}>Tareas Pendientes:</h2>
+        <ul className={styles.todoCompleted}>
+          {todoCompleted.map((e) => (
+            <ToDoItem
+              key={e.id}
+              todo={e}
+              onCheckboxChange={handleCheckboxChange}
+            />
+          ))}
+        </ul>
+      </div>
+      <div className={styles.containerPending}>
+        <h2 className={styles.title}>Tareas Completadas:</h2>
+        <ul className={styles.todoPending}>
+          {todoNotCompleted.map((e) => (
+            <ToDoItem
+              key={e.id}
+              todo={e}
+              onCheckboxChange={handleCheckboxChange}
+            />
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

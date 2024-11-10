@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useTodos } from '../../../components/context/TodosContext'
+import styles from './add.styles.module.css'
 
 const AddTodoForm = () => {
   const { addTodo } = useTodos()
@@ -23,33 +24,38 @@ const AddTodoForm = () => {
   }
 
   return (
-    <form method="post" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="name"
-        value={newTodo.name}
-        placeholder="Nombre de la tarea"
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="text"
-        name="description"
-        value={newTodo.description}
-        placeholder="Descripción de la tarea"
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="text"
-        name="creator"
-        value={newTodo.creator}
-        placeholder="Autor de la tarea"
-        onChange={handleChange}
-        required
-      />
-      <button type="submit">Guardar Tarea</button>
-    </form>
+    <div>
+      <form method="post" onSubmit={handleSubmit} className={styles.addFrom}>
+        <input
+          type="text"
+          name="name"
+          value={newTodo.name}
+          placeholder="Nombre de la tarea"
+          onChange={handleChange}
+          required
+          className={styles.todoInput}
+        />
+        <input
+          type="text"
+          name="description"
+          value={newTodo.description}
+          placeholder="Descripción de la tarea"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="creator"
+          value={newTodo.creator}
+          placeholder="Autor de la tarea"
+          onChange={handleChange}
+          required
+        />
+        <button type="submit" className={styles.todoButton}>
+          Guardar Tarea
+        </button>
+      </form>
+    </div>
   )
 }
 

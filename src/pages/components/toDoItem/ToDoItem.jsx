@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTodos } from '../../../components/context/TodosContext'
-import styles from './styles.module.css'
+import styles from './item.styles.module.css'
 import EditTodoForm from '../editTodoForm/EditTodoForm'
 
 const ToDoItem = ({ todo, onCheckboxChange }) => {
@@ -10,7 +10,7 @@ const ToDoItem = ({ todo, onCheckboxChange }) => {
   const [todoEdited, setTodoEdited] = useState(todo)
 
   return (
-    <li className={styles.list}>
+    <li className={styles.listElement}>
       <div className={styles.item}>
         <input
           type="checkbox"

@@ -1,0 +1,53 @@
+.containerElements {
+  display: flex;
+  .title {
+    text-align: center;
+    color: #fff;
+  }
+}
+@media (width > 768px) {
+  .containerElements {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  .containerCompleted,
+  .containerPending {
+    width: 50%;
+    flex: 1 1 calc(50% - 0.5rem);
+  }
+}
+@media (width < 767px) {
+  .containerElements {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.containerCompleted,
+.containerPending {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.todoCompleted {
+  li {
+    background-color: #00ff66;
+  }
+}
+.todoPending {
+  li {
+    background-color: #ccc;
+  }
+}
+
+.todoCompleted,
+.todoPending {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 5px;
+}

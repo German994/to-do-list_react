@@ -4,10 +4,4 @@ header {
     text-align: center;
     color: #fff;
   }
-  .containerMenu {
-    display: flex;
-  }
-  .menu {
-    display: flex;
-  }
 }
