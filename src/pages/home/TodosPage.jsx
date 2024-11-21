@@ -5,11 +5,9 @@ import ToDoList from '../components/toDoList/ToDoList'
 import styles from './home.styles.module.css'
 
 const TodosPage = () => {
-  const [todos, addTodo, deleteTodo, editTodo] = useState([])
-
   return (
     <div className={styles.dashboard}>
-      <TodosProvider value={{ todos, addTodo, deleteTodo, editTodo }}>
+      <TodosProvider>
         <AddTodoForm />
         <ToDoList />
       </TodosProvider>

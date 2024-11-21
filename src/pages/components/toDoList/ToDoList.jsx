@@ -21,8 +21,8 @@ const ToDoList = () => {
     <div className={styles.containerElements}>
       <div className={styles.containerCompleted}>
         <h2 className={styles.title}>Tareas Pendientes:</h2>
-        <ul className={styles.todoCompleted}>
-          {todoCompleted.map((e) => (
+        <ul className={styles.todoPending}>
+          {todoNotCompleted.map((e) => (
             <ToDoItem
               key={e.id}
               todo={e}
@@ -33,8 +33,8 @@ const ToDoList = () => {
       </div>
       <div className={styles.containerPending}>
         <h2 className={styles.title}>Tareas Completadas:</h2>
-        <ul className={styles.todoPending}>
-          {todoNotCompleted.map((e) => (
+        <ul className={styles.todoCompleted}>
+          {todoCompleted.map((e) => (
             <ToDoItem
               key={e.id}
               todo={e}
