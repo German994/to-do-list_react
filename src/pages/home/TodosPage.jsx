@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { TodosProvider } from '../../components/context/TodosContext'
 import AddTodoForm from '../components/addTodoForm/AddTodoForm'
 import ToDoList from '../components/toDoList/ToDoList'
