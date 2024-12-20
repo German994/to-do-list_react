@@ -38,18 +38,24 @@ const Register = () => {
               name="username"
               placeholder="Nombre de usuario"
               onChange={(e) => setUsername(e.target.value)}
+              minLength={6}
+              required
             />
             <input
               type="text"
               name="email"
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
+              minLength={6}
+              required
             />
             <input
               type="password"
               name="password"
               placeholder="Contraseña"
               onChange={(e) => setPassword(e.target.value)}
+              minLength={6}
+              required
             />
           </div>
           <button type="submit">
