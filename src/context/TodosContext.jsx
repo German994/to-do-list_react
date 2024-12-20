@@ -6,14 +6,16 @@ const apiUrl = import.meta.env.VITE_API_URL
 
 export const TodosProvider = ({ children }) => {
   const [todos, setTodos] = useState([])
-  const TOKEN = localStorage.getItem('t')
+  const [token, setToken] = useState(localStorage.getItem('t'))
+  const [loading, setLoading] = useState(true) // Para controlar la carga inicial
 
   const fetchTodos = async () => {
     try {
+      if (!token) return // Si no hay token, no intentamos cargar tareas
       const response = await fetch(`${apiUrl}/todos`, {
         headers: {
-          'Authorization': 'Bearer ' + TOKEN,
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token,
         },
       })
       if (!response.ok) {
@@ -27,29 +29,29 @@ export const TodosProvider = ({ children }) => {
     }
   }
 
+  // TODO Manejar la persistencia de la sesión al recargar la pagina
   useEffect(() => {
-    fetchTodos()
-  }, [])
+    if (token) {
+      fetchTodos()
+    }
+  }, [token])
 
   const addTodo = async (newTodo) => {
     try {
       const response = await fetch(`${apiUrl}/todos`, {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer ' + TOKEN,
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token,
         },
         body: JSON.stringify(newTodo),
       })
-      if (!response.ok) {
-        throw new Error('Error al agregar la tarea')
-      }
 
       const data = await response.json()
       setTodos((prevTodos) => [...prevTodos, data])
       console.log('La tarea ha sido agregada:', data)
     } catch (error) {
-      console.error(error.message)
+      console.error(error)
     }
   }
 
@@ -58,7 +60,7 @@ export const TodosProvider = ({ children }) => {
       const response = await fetch(`${apiUrl}/todos/${todoId}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': 'Bearer ' + TOKEN,
+          'Authorization': 'Bearer ' + token,
         },
       })
       if (!response.ok) {
@@ -78,8 +80,8 @@ export const TodosProvider = ({ children }) => {
       const response = await fetch(`${apiUrl}/todos/${todoId}`, {
         method: 'PATCH',
         headers: {
-          'Authorization': 'Bearer ' + TOKEN,
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token,
         },
         body: JSON.stringify(updatedTodo),
       })
@@ -104,6 +106,7 @@ export const TodosProvider = ({ children }) => {
         addTodo,
         deleteTodo,
         editTodo,
+        loading,
       }}
     >
       {children}

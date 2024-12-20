@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router'
-import { AuthProvider } from './components/context/AuthContext'
+import { AuthProvider } from './context/AuthContext'
 import Header from './components/header/Header'
 import Login from './components/header/login/Login'
 import Register from './components/header/register/Register'
-import TodosPage from './pages/home/TodosPage'
+import TodosPage from './components/main/TodosPage'
 
 function App() {
   return (

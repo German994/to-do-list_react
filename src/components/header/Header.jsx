@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../../context/AuthContext'
 import styles from './styles.module.css'
 
 const Header = () => {

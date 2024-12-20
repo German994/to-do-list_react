@@ -1,4 +1,4 @@
-import { useTodos } from '../../../components/context/TodosContext'
+import { useTodos } from '../../context/TodosContext'
 import ToDoItem from '../toDoItem/ToDoItem'
 import styles from './list.styles.module.css'
 

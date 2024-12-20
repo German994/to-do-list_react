@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useTodos } from '../../../components/context/TodosContext'
+import { useTodos } from '../../context/TodosContext'
 import styles from './add.styles.module.css'
 
 const AddTodoForm = () => {

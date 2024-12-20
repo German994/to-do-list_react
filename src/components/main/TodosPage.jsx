@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../components/context/AuthContext'
-import { TodosProvider } from '../../components/context/TodosContext'
-import AddTodoForm from '../components/addTodoForm/AddTodoForm'
-import ToDoList from '../components/toDoList/ToDoList'
+import { useAuth } from '../../context/AuthContext'
+import { TodosProvider } from '../../context/TodosContext'
+import AddTodoForm from '../addTodoForm/AddTodoForm'
+import ToDoList from '../toDoList/ToDoList'
 import styles from './home.styles.module.css'
 
 const TodosPage = () => {

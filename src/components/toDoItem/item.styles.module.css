@@ -5,10 +5,18 @@ input[type='checkbox'] {
   cursor: pointer;
 }
 .item {
-  color: #fff;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
   .info {
-    min-height: 70px;
+    flex: 1;
+    margin-left: 10px;
+    p {
+      margin: 2px 0;
+      font-size: 14px;
+      color: #333;
+    }
   }
 }
 .listElement {

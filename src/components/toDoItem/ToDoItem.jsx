@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { useTodos } from '../../../components/context/TodosContext'
-import { useAuth } from '../../../components/context/AuthContext'
+import { useTodos } from '../../context/TodosContext'
+import { useAuth } from '../../context/AuthContext'
 import styles from './item.styles.module.css'
-import Modal from '../../../components/modal/Modal'
+import Modal from '../modal/Modal'
 import EditTodoForm from '../editTodoForm/EditTodoForm'
 
 const ToDoItem = ({ todo, onCheckboxChange }) => {
