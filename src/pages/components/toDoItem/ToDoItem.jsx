@@ -1,13 +1,32 @@
 import { useState } from 'react'
 import { useTodos } from '../../../components/context/TodosContext'
+import { useAuth } from '../../../components/context/AuthContext'
 import styles from './item.styles.module.css'
+import Modal from '../../../components/modal/Modal'
 import EditTodoForm from '../editTodoForm/EditTodoForm'
 
 const ToDoItem = ({ todo, onCheckboxChange }) => {
-  const { deleteTodo } = useTodos()
+  const { deleteTodo, setTodos } = useTodos()
+  const { user } = useAuth()
 
-  const [isEditing, setIsEditing] = useState(false)
-  const [todoEdited, setTodoEdited] = useState(todo)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedTodo, setSelectedTodo] = useState(null)
+  const handleOpenModal = (todo) => {
+    setSelectedTodo(todo)
+    setIsModalOpen(true)
+  }
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedTodo(null)
+  }
+  const handleEditTodo = (updatedTodo) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo._id === updatedTodo._id ? updatedTodo : todo
+      )
+    )
+    handleCloseModal()
+  }
 
   return (
     <li className={styles.listElement}>
@@ -15,29 +34,23 @@ const ToDoItem = ({ todo, onCheckboxChange }) => {
         <input
           type="checkbox"
           name="todoCheckbox"
-          checked={todo.isCompleted}
-          onChange={() => onCheckboxChange(todo.id)}
+          checked={todo.is_completed}
+          onChange={() => onCheckboxChange(todo._id)}
         />
-        {isEditing ? (
-          <div className={styles.info}>
-            <EditTodoForm
-              todo={todo}
-              todoEdited={todoEdited}
-              setTodoEdited={setTodoEdited}
-              setIsEditing={setIsEditing}
-            />
-          </div>
-        ) : (
-          <div className={styles.info}>
-            <p>{todo.name}</p>
-            <p>{todo.description}</p>
-            <p>{todo.creator}</p>
-          </div>
-        )}
-        <button onClick={() => setIsEditing((openClose) => !openClose)}>
-          🖊
-        </button>
-        <button onClick={() => deleteTodo(todo.id)}>❌</button>
+        <div className={styles.info}>
+          <p>{todo.title}</p>
+          <p>Descripción: {todo.description}</p>
+          <p>Creado por:{" "} {user.id === todo.user ? user.username : "Desconocido"}</p>
+        </div>
+
+        <button onClick={() => handleOpenModal(todo)}>🖊</button>
+        <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+          {selectedTodo && (
+            <EditTodoForm todo={selectedTodo} onEdit={handleEditTodo} />
+          )}
+        </Modal>
+
+        <button onClick={() => deleteTodo(todo._id)}>❌</button>
       </div>
     </li>
   )

@@ -1,12 +1,23 @@
-import TodosPage from './pages/home/TodosPage'
+import { BrowserRouter as Router, Routes, Route } from 'react-router'
+import { AuthProvider } from './components/context/AuthContext'
 import Header from './components/header/Header'
+import Login from './components/header/login/Login'
+import Register from './components/header/register/Register'
+import TodosPage from './pages/home/TodosPage'
 
 function App() {
   return (
-    <div>
-      <Header />
-      <TodosPage />
-    </div>
+    <Router>
+      <AuthProvider>
+        <Header />
+        <Routes>
+          <Route path="*" element={<div>404 - Page Not Found</div>} />
+          <Route path="/" element={<TodosPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </AuthProvider>
+    </Router>
   )
 }
 

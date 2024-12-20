@@ -5,10 +5,10 @@ import styles from './add.styles.module.css'
 const AddTodoForm = () => {
   const { addTodo } = useTodos()
   const initialTodoState = {
-    name: '',
+    title: '',
     description: '',
-    creator: '',
-    isCompleted: false,
+    is_completed: false,
+    user: '',
   }
   const [newTodo, setNewTodo] = useState(initialTodoState)
 
@@ -28,26 +28,17 @@ const AddTodoForm = () => {
       <form method="post" onSubmit={handleSubmit} className={styles.addFrom}>
         <input
           type="text"
-          name="name"
-          value={newTodo.name}
+          name="title"
+          value={newTodo.title}
           placeholder="Nombre de la tarea"
           onChange={handleChange}
           required
-          className={styles.todoInput}
         />
         <input
           type="text"
           name="description"
           value={newTodo.description}
           placeholder="Descripción de la tarea"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="creator"
-          value={newTodo.creator}
-          placeholder="Autor de la tarea"
           onChange={handleChange}
           required
         />

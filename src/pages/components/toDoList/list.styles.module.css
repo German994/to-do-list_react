@@ -46,7 +46,7 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 5px;
   color: #fff;
   border-radius: 0.5rem;
   padding: 5px;

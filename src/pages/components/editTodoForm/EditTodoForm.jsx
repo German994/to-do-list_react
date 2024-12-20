@@ -1,57 +1,54 @@
+import { useState } from 'react'
 import { useTodos } from '../../../components/context/TodosContext'
 
-const EditTodoForm = ({ todoEdited, setTodoEdited, setIsEditing, todo }) => {
-  const { editTodo } = useTodos()
+const EditTodoForm = ({ todo }) => {
+  const { todos, editTodo } = useTodos()
+  const [todoEdited, setTodoEdited] = useState(todo)
 
-  const handleEditTodo = () => {
-    editTodo(todo.id, todoEdited)
-    setIsEditing(false)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    editTodo(todoEdited._id, todoEdited)
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setTodoEdited((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
+
+  const handleCheckboxChange = (todoId) => {
+    const todoToUpdate = todos.find((todo) => todo._id === todoId)
+    const updatedTodo = {
+      ...todoToUpdate,
+      is_completed: !todoToUpdate.is_completed,
+    }
+    editTodo(todoId, updatedTodo)
   }
 
   return (
     <div>
-      <form
-        method="put"
-        onSubmit={(e) => {
-          e.preventDefault()
-          handleEditTodo()
-        }}
-      >
+      <form onSubmit={handleSubmit}>
+        <input
+          type="checkbox"
+          name="todoCheckbox"
+          checked={todoEdited.is_completed}
+          onChange={() => handleCheckboxChange(todo._id)}
+        />
         <input
           type="text"
-          name="name"
-          value={todoEdited.name}
+          name="title"
+          value={todoEdited.title}
           placeholder="Nombre de la tarea"
-          onChange={(e) =>
-            setTodoEdited((prevState) => ({
-              ...prevState,
-              name: e.target.value,
-            }))
-          }
+          onChange={handleInputChange}
         />
         <input
           type="text"
           name="description"
           value={todoEdited.description}
           placeholder="Descripción de la tarea"
-          onChange={(e) =>
-            setTodoEdited((prevState) => ({
-              ...prevState,
-              description: e.target.value,
-            }))
-          }
-        />
-        <input
-          type="text"
-          name="creator"
-          value={todoEdited.creator}
-          placeholder="Autor de la tarea"
-          onChange={(e) =>
-            setTodoEdited((prevState) => ({
-              ...prevState,
-              creator: e.target.value,
-            }))
-          }
+          onChange={handleInputChange}
         />
         <button type="submit">✅</button>{' '}
       </form>
