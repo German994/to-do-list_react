@@ -8,7 +8,7 @@ input[type='checkbox'] {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 5px;
   .info {
     flex: 1;
     margin-left: 10px;
@@ -26,7 +26,6 @@ input[type='checkbox'] {
   border-radius: 0.5rem;
   padding: 5px;
   flex: 1 1 calc(50% - 0.5rem);
-  overflow: auto;
 }
 button {
   padding: 0.5rem 0.5rem;

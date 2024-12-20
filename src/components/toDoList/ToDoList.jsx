@@ -47,7 +47,7 @@ const ToDoList = () => {
               />
             ))
           ) : (
-            <li>No hay tareas completadas.</li>
+            <li style={{color:"#000"}}>No hay tareas completadas.</li>
           )}
         </ul>
       </div>

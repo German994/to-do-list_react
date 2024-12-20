@@ -32,6 +32,7 @@ const AddTodoForm = () => {
           value={newTodo.title}
           placeholder="Nombre de la tarea"
           onChange={handleChange}
+          maxLength="50"
           required
         />
         <input
@@ -40,6 +41,7 @@ const AddTodoForm = () => {
           value={newTodo.description}
           placeholder="Descripción de la tarea"
           onChange={handleChange}
+          maxLength="50"
           required
         />
         <button type="submit" className={styles.todoButton}>

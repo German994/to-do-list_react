@@ -40,7 +40,7 @@ const ToDoItem = ({ todo, onCheckboxChange }) => {
         <div className={styles.info}>
           <p>{todo.title}</p>
           <p>Descripción: {todo.description}</p>
-          <p>Creado por:{" "} {user.id === todo.user ? user.username : "Desconocido"}</p>
+          <p>Creado por:{' '}{user ? user.id === todo.user ? user.username : 'Desconocido' : 'Desconocido'} </p>
         </div>
 
         <button onClick={() => handleOpenModal(todo)}>🖊</button>

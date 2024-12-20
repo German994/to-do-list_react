@@ -19,44 +19,40 @@ const Login = () => {
       await login(email, password)
       navigate('/')
     } catch (error) {
-      console.error(error.message || 'Error al iniciar sesión', error)
+      console.error(error.message || 'Error al iniciar sesión', error)
+      setError(error.message || 'Error al iniciar sesión') // Mostrar el mensaje de error
     }
-  }
-  const handleCancel = () => {
-    navigate('/')
+    setIsLoading(false)
   }
 
   return (
     <main className={styles.authContainer}>
-      <h1>Iniciar Sesión:</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="text"
-            name="email"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Contraseña"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        {error && <p className="error-message">{error}</p>}
-        <button type="submit">
-          {' '}
-          {isLoading ? 'Cargando...' : 'Iniciar Sesión'}
-        </button>
-        <button
-          type="button"
-          className={styles.cancelButton}
-          onClick={handleCancel}
-        >
-          Cancelar
-        </button>
-      </form>
+      <div className={styles.boxContainer}>
+        <h1>Iniciar Sesión:</h1>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <input
+              type="text"
+              name="email"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Contraseña"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">
+            {' '}
+            {isLoading ? 'Cargando...' : 'Iniciar Sesión'}
+          </button>
+          {error && <p>{error}</p>}
+        </form>
+      </div>
     </main>
   )
 }

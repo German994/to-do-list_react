@@ -7,7 +7,6 @@ const apiUrl = import.meta.env.VITE_API_URL
 export const TodosProvider = ({ children }) => {
   const [todos, setTodos] = useState([])
   const [token, setToken] = useState(localStorage.getItem('t'))
-  const [loading, setLoading] = useState(true) // Para controlar la carga inicial
 
   const fetchTodos = async () => {
     try {
@@ -106,7 +105,6 @@ export const TodosProvider = ({ children }) => {
         addTodo,
         deleteTodo,
         editTodo,
-        loading,
       }}
     >
       {children}

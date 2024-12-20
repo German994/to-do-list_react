@@ -29,36 +29,42 @@ const Register = () => {
 
   return (
     <main className={styles.authContainer}>
-      <h1>Crear cuenta:</h1>
-      <form method="post" onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="text"
-            name="username"
-            placeholder="Nombre de usuario"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type="text"
-            name="email"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Contraseña"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">
-          {' '}
-          {isLoading ? 'Cargando...' : 'Registrarse'}
-        </button>
-        <button type="button" className={styles.cancelButton} onClick={handleCancel}>
-          Cancelar
-        </button>
-      </form>
+      <div className={styles.boxContainer}>
+        <h1>Crear cuenta:</h1>
+        <form method="post" onSubmit={handleSubmit}>
+          <div>
+            <input
+              type="text"
+              name="username"
+              placeholder="Nombre de usuario"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              type="text"
+              name="email"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Contraseña"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button type="submit">
+            {' '}
+            {isLoading ? 'Cargando...' : 'Registrarse'}
+          </button>
+          <button
+            type="button"
+            className={styles.cancelButton}
+            onClick={handleCancel}
+          >
+            Cancelar
+          </button>
+        </form>
+      </div>
     </main>
   )
 }
